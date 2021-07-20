@@ -4,20 +4,23 @@ import { useHistory, useLocation } from 'react-router-dom'
 import SearchIcon from '@material-ui/icons/Search'
 import ImageSearchIcon from '@material-ui/icons/ImageSearch'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
-import { Button, Tooltip } from '@material-ui/core'
-import { More } from '@material-ui/icons';
+import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive'
+import { Button, Tooltip, Menu, MenuItem, Avatar } from '@material-ui/core'
 function Header() {
     const history = useHistory()
     const location = useLocation()
     const [showCategories, setShowCategories] = useState(false)
+    const [anchorEl, setAnchorEl] = useState(null)
     const inputRef = useRef()
 
     const goToHomePage = () => history.push('/')
 
     const handleSearchSubmit = (e) => e.preventDefault()
 
+    const handleOpen = (e) => setAnchorEl(e.currentTarget)
+    const handleClose = () => setAnchorEl(false)
 
-    const handleOpen = () => console.log('opening tooltip')
+
 
     useEffect(() => {
         let unListen = history.listen((location, action) => {
@@ -59,10 +62,51 @@ function Header() {
                                 aria-controls="simple-menu" aria-haspopup="true"
                             />
                         </Tooltip>
+
+                        <Menu
+                            elevation={5}
+                            getContentAnchorEl={null}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'center',
+                            }}
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'center',
+                            }}
+                            id="simple-menu"
+                            anchorEl={anchorEl}
+                            keepMounted
+                            open={Boolean(anchorEl)}
+                            onClose={handleClose}
+                        >
+                            <MenuItem>
+                                <span className="header__rightMenuItem">Blogs</span>
+                            </MenuItem>
+                            <MenuItem>
+                                <span className="header__rightMenuItem">Topics</span>
+                            </MenuItem>
+                            <MenuItem>
+                                <span className="header__rightMenuItem">Collections</span>
+                            </MenuItem>
+                            <MenuItem>
+                                <span className="header__rightMenuItem">Community</span>
+                            </MenuItem>
+                        </Menu>
                     </div>
+
+                    <Button className="header__rightButton" size='small' disabledElevation={true} variant='contained'>
+                        Submit a Photo
+                    </Button>
+
+                    <NotificationsActiveIcon className="header__rightIcon header__rightBellIcon" />
+
+                    <Avatar className="header__rightAvatar" />
+
                 </div>
 
             </div>
+            {/* Show Categories only in Home */}
         </div>
 
     )
