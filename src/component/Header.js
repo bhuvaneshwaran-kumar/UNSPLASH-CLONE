@@ -22,10 +22,15 @@ function Header() {
     const handleOpen = (e) => setAnchorEl(e.currentTarget)
     const handleClose = () => setAnchorEl(false)
 
+    useEffect(() => {
+        if (location.pathname === '/') setShowCategories(true)
+    }, [location.pathname])
 
 
     useEffect(() => {
+
         let unListen = history.listen((location, action) => {
+            console.log(location.pathname)
             if (location.pathname === '/') {
                 inputRef.current.value = ''
                 setShowCategories(true)

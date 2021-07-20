@@ -1,0 +1,34 @@
+.categories {
+  width: 100%;
+  display: flex;
+}
+.categories__list {
+  flex: 1;
+  display: flex;
+  overflow-x: auto;
+}
+
+.categories__item {
+  text-decoration: none;
+  color: rgba(128, 128, 128);
+  margin: 0 0.5rem;
+  padding: 1rem 0.5rem;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+  overflow-wrap: unset;
+  display: inline-block;
+}
+
+.categories__item:hover {
+  color: black;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.categories__list {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.categories__list::-webkit-scrollbar {
+  display: none;
+}
