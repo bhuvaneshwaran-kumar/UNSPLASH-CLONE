@@ -6,6 +6,8 @@ import ImageSearchIcon from '@material-ui/icons/ImageSearch'
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz'
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive'
 import { Button, Tooltip, Menu, MenuItem, Avatar } from '@material-ui/core'
+
+import Categories from './Categories.js'
 function Header() {
     const history = useHistory()
     const location = useLocation()
@@ -107,6 +109,9 @@ function Header() {
 
             </div>
             {/* Show Categories only in Home */}
+            {
+                showCategories && <Categories />
+            }
         </div>
 
     )

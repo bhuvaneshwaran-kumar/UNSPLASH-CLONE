@@ -36,6 +36,7 @@
   border: 1px solid lightgrey;
 }
 
+/* even when the child get focused */
 .header__input:focus-within {
   background-color: transparent;
   border: 1px solid lightgrey;
@@ -75,6 +76,7 @@
   margin-left: 1rem;
 }
 
+/* !important will not let later css changes to override. */
 .header__rightButton {
   text-transform: none !important;
   margin: 0 0.5rem !important;
