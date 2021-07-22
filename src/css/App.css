@@ -1,0 +1,23 @@
+.app {
+  width: 100%;
+  min-height: 105vh;
+}
+
+/* Below classes are used inside the HomePage and SearchPage */
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 1300px;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0.5rem;
+}
+.title {
+  padding-bottom: 0.5rem;
+}

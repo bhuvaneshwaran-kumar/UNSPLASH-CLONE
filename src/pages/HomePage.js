@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import Hero from '../component/Hero'
+import Image from '../component/Image'
 import { getRandomImages } from '../unsplash'
 function HomePage() {
 
-    const [images, setImage] = useState()
+    const [images, setImages] = useState([])
 
     useEffect(() => {
         getRandomImages()
@@ -17,7 +18,7 @@ function HomePage() {
                     userImageUrl: image.user.profile_image.medium,
                     profileUrl: image.user.links.html
                 }))
-                console.log(imagesData)
+                setImages(imagesData)
             })
             .catch(err => console.log(err))
     }, [])
@@ -30,7 +31,9 @@ function HomePage() {
                 <div className='contaoner'>
                     <div className='image__container'>
                         {
-
+                            images.map(image => (
+                                <Image key={image.imageUrl} data={image} />
+                            ))
                         }
                     </div>
                 </div>
