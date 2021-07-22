@@ -17,7 +17,12 @@ function Header() {
 
     const goToHomePage = () => history.push('/')
 
-    const handleSearchSubmit = (e) => e.preventDefault()
+    const handleSearchSubmit = (e) => {
+        e.preventDefault()
+        if (inputRef.current === '') return
+        history.push(`/s/${inputRef.current.value}`)
+
+    }
 
     const handleOpen = (e) => setAnchorEl(e.currentTarget)
     const handleClose = () => setAnchorEl(false)
