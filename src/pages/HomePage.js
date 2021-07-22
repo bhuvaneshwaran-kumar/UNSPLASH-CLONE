@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Hero from '../component/Hero'
 import Image from '../component/Image'
+import '../css/App.css'
 import { getRandomImages } from '../unsplash'
 function HomePage() {
 
@@ -29,7 +30,7 @@ function HomePage() {
 
             <div className="wrapper">
                 <div className='contaoner'>
-                    <div className='image__container'>
+                    <div className='images__container'>
                         {
                             images.map(image => (
                                 <Image key={image.imageUrl} data={image} />

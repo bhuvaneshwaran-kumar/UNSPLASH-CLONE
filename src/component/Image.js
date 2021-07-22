@@ -1,4 +1,5 @@
 import React from 'react'
+import '../css/Image.css'
 import { Button, Avatar } from '@material-ui/core'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import AddIcon from '@material-ui/icons/Add'
@@ -16,7 +17,7 @@ function Image({ data }) {
             </div>
             <img src={data.imageUrl} alt='Unsplash api images,' className='image__img' />
             <div className='image__footer'>
-                <a href={data.profileUrl} target='blank'>
+                <a href={data.profileUrl} target='blank' className='image__footerLeft'>
                     <Avatar src={data.userImageUrl} alt='user' />
                     <h4 className='image__footerLeftName'>
                         {data.username}
