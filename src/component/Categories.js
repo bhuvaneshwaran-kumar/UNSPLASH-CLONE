@@ -2,10 +2,7 @@ import '../css/Categories.css'
 import { Link } from 'react-router-dom'
 import { getRandomImages } from '../unsplash'
 
-// getRandomImages().then(async (data) => {
-//     const res = await data.json()
-//     console.log(res)
-// })
+
 
 
 export default function Categories() {
