@@ -1,6 +1,5 @@
 import '../css/Categories.css'
 import { Link } from 'react-router-dom'
-import { getRandomImages } from '../unsplash'
 
 
 

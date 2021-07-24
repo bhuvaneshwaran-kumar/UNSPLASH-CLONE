@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import '../css/Image.css'
 import { Button, Avatar } from '@material-ui/core'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import AddIcon from '@material-ui/icons/Add'
 import ArroeDownwardIcon from '@material-ui/icons/ArrowDownward'
 function Image({ data }) {
+    const imageRef = useRef()
+    const imageOuterRef = useRef()
     const downloadImage = async () => {
         try {
             // First, we use fetch to get the ReadableStream data of the image
@@ -26,9 +28,35 @@ function Image({ data }) {
         catch (err) {
             alert('Something went wrong... Unable to download image')
         }
+
+
     }
+
+    const interSectionObserverToLasyLoading = target => {
+
+        const io = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    console.log('intersecting')
+                    setTimeout(() => { entry.target.setAttribute('src', entry.target.getAttribute('data-src')) }, 200)
+                    observer.disconnect()
+                }
+            })
+        }, {
+            threshold: 0.25
+        })
+
+        io.observe(target)
+
+    }
+
+    useEffect(() => {
+        interSectionObserverToLasyLoading(imageRef.current)
+    }, [interSectionObserverToLasyLoading])
+
+
     return (
-        <div className='image'>
+        <div className='image' ref={imageOuterRef}>
             <div className='image__header'>
                 <Button variant='contained' size='small' disabledElevation className='image__button'>
                     <FavoriteIcon fontSize='small' />
@@ -37,7 +65,7 @@ function Image({ data }) {
                     <AddIcon fontSize='small' />
                 </Button>
             </div>
-            <img src={data.imageUrl} alt='Unsplash api images,' className='image__img' />
+            <img ref={imageRef} src={data.compressedImageUrl} data-src={data.imageUrl} alt='Unsplash api images,' className='image__img' />
             <div className='image__footer'>
                 <a href={data.profileUrl} target='blank' className='image__footerLeft'>
                     <Avatar src={data.userImageUrl} alt='user' />
