@@ -37,7 +37,6 @@ function Image({ data }) {
         const io = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    console.log('intersecting')
                     setTimeout(() => { entry.target.setAttribute('src', entry.target.getAttribute('data-src')) }, 200)
                     observer.disconnect()
                 }

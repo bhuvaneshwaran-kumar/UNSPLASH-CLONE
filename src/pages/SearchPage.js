@@ -13,7 +13,6 @@ function SearchPage() {
             .then(async (res) => {
                 let data = await res.json()
                 data = data.results
-                console.log(data)
                 setImages(data.map((image) => (
                     {
                         id: image.id,

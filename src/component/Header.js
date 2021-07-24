@@ -35,7 +35,6 @@ function Header() {
     useEffect(() => {
 
         let unListen = history.listen((location, action) => {
-            console.log(location.pathname)
             if (location.pathname === '/') {
                 inputRef.current.value = ''
                 setShowCategories(true)
