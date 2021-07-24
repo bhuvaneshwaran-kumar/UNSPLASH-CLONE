@@ -18,6 +18,7 @@ function SearchPage() {
                     {
                         id: image.id,
                         imageUrl: image.urls.regular,
+                        compressedImageUrl: image.urls.regular.replace('q=80&w=1080', 'q=50&w=50'),
                         downloadUrl: image.urls.full,
                         username: image.user.username,
                         userImageUrl: image.user.profile_image.medium,
