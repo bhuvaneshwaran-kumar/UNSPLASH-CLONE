@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import '../css/App.css'
+import '../css/App.css';
 import '../css/Image.css'
 import Image from '../component/Image'
 import { useParams } from 'react-router-dom'

@@ -17,9 +17,9 @@
   flex-direction: column;
   padding: 0 0.5rem;
 }
-.title {
+h1.title {
   padding-bottom: 0.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   font-size: 3rem;
   font-weight: 500;
   text-transform: capitalize;

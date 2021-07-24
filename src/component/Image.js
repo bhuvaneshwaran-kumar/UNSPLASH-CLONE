@@ -3,10 +3,9 @@ import '../css/Image.css'
 import { Button, Avatar } from '@material-ui/core'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import AddIcon from '@material-ui/icons/Add'
-import ArroeDownwardIcon from '@material-ui/icons/ArrowDownward'
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 function Image({ data }) {
     const imageRef = useRef()
-    const imageOuterRef = useRef()
     const downloadImage = async () => {
         try {
             // First, we use fetch to get the ReadableStream data of the image
@@ -32,52 +31,55 @@ function Image({ data }) {
 
     }
 
-    const interSectionObserverToLasyLoading = target => {
-
-        const io = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => { entry.target.setAttribute('src', entry.target.getAttribute('data-src')) }, 200)
-                    observer.disconnect()
-                }
-            })
-        }, {
-            threshold: 0.25
-        })
-
-        io.observe(target)
-
-    }
 
     useEffect(() => {
+        const interSectionObserverToLasyLoading = target => {
+
+            const io = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => { entry.target.setAttribute('src', entry.target.getAttribute('data-src')) }, 100)
+                        observer.disconnect()
+                    }
+                })
+            }, {
+                threshold: 0.25
+            })
+
+            io.observe(target)
+
+        }
+
         interSectionObserverToLasyLoading(imageRef.current)
-    }, [interSectionObserverToLasyLoading])
+    }, [])
 
 
-    return (
-        <div className='image' ref={imageOuterRef}>
-            <div className='image__header'>
-                <Button variant='contained' size='small' disabledElevation className='image__button'>
-                    <FavoriteIcon fontSize='small' />
-                </Button>
-                <Button variant='contained' size='small' disabledElevation className='image__button'>
-                    <AddIcon fontSize='small' />
-                </Button>
-            </div>
-            <img ref={imageRef} src={data.compressedImageUrl} data-src={data.imageUrl} alt='Unsplash api images,' className='image__img' />
-            <div className='image__footer'>
-                <a href={data.profileUrl} target='blank' className='image__footerLeft'>
-                    <Avatar src={data.userImageUrl} alt='user' />
-                    <h4 className='image__footerLeftName'>
-                        {data.username}
-                    </h4>
-                </a>
-                <Button onClick={downloadImage} variant='contained' size='small' disabledElevation className='image__button' titlt='Download Photo' >
-                    <ArroeDownwardIcon fontSize='small' />
-                </Button>
-            </div>
+    return (<div className="image">
+        <div className="image__header">
+            <Button variant="contained" size="small" disableElevation className="image__button">
+                <FavoriteIcon fontSize="small" />
+            </Button>
+            &nbsp; &nbsp; &nbsp;
+            <Button variant="contained" size="small" disableElevation className="image__button">
+                <AddIcon fontSize="small" />
+            </Button>
+        </div>
 
-        </div >
+        <img ref={imageRef} data-src={data.imageUrl} src={data.compressedImageUrl} alt="" className="image__img" />
+
+        <div className="image__footer">
+            <a href={data.profileUrl} target="_blank" className="image__footerLeft" rel="noreferrer">
+                <Avatar src={data.userImageUrl}>{data.username[0]}</Avatar>
+                <h4 className="image__footerLeftName">
+                    {data.username}
+                </h4>
+            </a>
+            <Button onClick={downloadImage} variant="contained" size="small" disableElevation
+                className="image__button" title="Download Photo">
+                <ArrowDownwardIcon fontSize="small" />
+            </Button>
+        </div>
+    </div>
     )
 }
 
